@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <section class="clients">
+        <div class="clients-header">
+            <div class="edit-content">
+                <form action="" class="forms-clients" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button class="btn-form-clients" type="submit">Изменить</button>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

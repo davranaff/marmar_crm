@@ -1,0 +1,69 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+<header>
+    <svg viewBox="0 0 100 80" width="40" height="40" class="hamburger-menu">
+        <rect width="100" height="20"></rect>
+        <rect y="30" width="100" height="20"></rect>
+        <rect y="60" width="100" height="20"></rect>
+    </svg>
+    <nav class="navbar">
+
+    </nav>
+    <div class="navbar-burger">
+        <svg viewBox="0 0 100 80" width="40" height="40" class="burger-menu">
+            <rect width="80" height="10"></rect>
+            <rect y="30" width="80" height="10"></rect>
+            <rect y="60" width="80" height="10"></rect>
+        </svg>
+        <img src="{% static 'img/logo.svg' %}" alt="logo" class="logo">
+        <ul class="menu">
+            <li>
+                <img src="{% static './img/home.svg' %}" alt="">
+                <a href="{% url 'home' %}">Главная</a>
+            </li>
+            <li>
+                <img src="{% static './img/ofis.svg' %}" alt="">
+                <a href="{% url 'offic' %}">Проект</a>
+            </li>
+            <li>
+                <img src="{% static './img/docs.svg' %}" alt="">
+                <a href="">Регламенты</a>
+            </li>
+            <li>
+                <img src="{% static './img/Lid.svg' %}" alt="">
+                <a href="{% url 'clients' %}">Клиенты</a>
+            </li>
+            <li>
+                <img src="{% static './img/pay.svg' %}" alt="">
+                <a href="{% url 'service' %}">Справочник</a>
+            </li>
+            <li>
+                <img src="{% static './img/logout.svg' %}" alt="">
+                <a href="{% url 'sign_out' %}">Выход</a>
+            </li>
+        </ul>
+    </div>
+
+</header>
+<section>
+</section>
+
+{% block content %}
+{% endblock %}
+
+</body>
+<script src="{% static 'script.js' %}"></script>
+</html>

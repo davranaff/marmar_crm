@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <section class="ofis">
+        <a href="{% url 'offic' %}" class="put">ОФС<span>/</span></a>
+        <div class="container-dep">
+            <h1>Отдел дизайна</h1>
+            <div class="dep-header">
+                <p>Задачи</p>
+            </div>
+            <hr>
+        </div>
+
+
+        <table class="table-project">
+            <tr>
+                <th>Zakaz Nomi</th>
+                <th>umimiy ish haqi</th>
+                {#                <th>konstruksiya</th>#}
+            </tr>
+            <tr>
+                <td>{{ orders.title }}</td>
+                <td>{{ orders.numbers }}</td>
+            </tr>
+        </table>
+
+        <table class="table-project">
+            <tr>
+                <th>Xizmat</th>
+                <th>Foiz ulushi</th>
+                <th>summasi</th>
+                <th>tugatilganligi</th>
+            </tr>
+            {% for projectservice in projectservices %}
+                <tr>
+                    <td>{{ projectservice.service.name }}</td>
+                    <td>{{ projectservice.parcent }} %
+                        <div id="modal-project-{{ projectservice.pk }}" class="modal myModal">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span onclick="closeModal('modal-project-'+{{ projectservice.pk }})" class="close">&times;</span>
+                                <form class="forms-clients" method="post"
+                                      action="{% url 'edit_percent' projectservice.pk %}">
+                                    {% csrf_token %}
+                                    <input type="number" name="percent" value="{{ projectservice.parcent }}">
+                                    <input type="number" name="max_parcent" value="{{ projectservice.max_parcent }}">
+                                    <button class="btn-form-clients" type="submit">Добавить</button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{ projectservice.total_prince }}</td>
+                    <td>{{ projectservice.max_parcent }} %
+                        <button class="btn-archive modal-project-btn" id="{{ projectservice.pk }}">изменить</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <hr>
+        <table class="table-project">
+            <tr>
+                <th>Umumiy foiz</th>
+                <th>Summa</th>
+                <th>Umumiy tugatilgan foizi</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>{{ result_parcent }} %</td>
+                <td>{{ reuslt_sum }}</td>
+                <td>{{ max_percent_sum }} %</td>
+            </tr>
+
+
+        </table>
+        <hr>
+        <table class="table-project">
+            <tr>
+                <th>Tugatilgan foiz</th>
+                <th>Tugatilgan foiz</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>{{ sum_percent }} %</td>
+                <td>{{ result }}</td>
+            </tr>
+
+
+        </table>
+    </section>
+{% endblock %}

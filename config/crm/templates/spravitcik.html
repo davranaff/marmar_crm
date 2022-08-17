@@ -1,0 +1,59 @@
+{% extends 'index.html' %}
+{% block content %}
+    <style>
+        form ul {
+            display: none;
+        }
+        form label{
+            display: none;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <div class="clients-header">
+        <button type="button" id="myBtn" class="btn-spravichnik">Новый сервис</button>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <select id="select" name="service">
+                    <option id="xizmat_turi" value="xizmat turi">Тип сервиса</option>
+                    <option id="xizmat" value="xizmat">Сервис</option>
+                </select>
+                <form class="forms-clients" method="post" action="" id="form">
+                    {% csrf_token %}
+                    {{ form }}
+                    <div class="hidden" id="hidden-input">
+                    </div>
+                    <button class="btn-form-clients" type="submit">Добавить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let select = document.getElementById('select')
+        let form = document.getElementById('form')
+        let hiddenInput = document.getElementById('hidden-input')
+        form.id_department.style.display = 'none'
+        form.id_parent.style.display = 'none'
+
+        select.onchange = () => {
+            if (select.value === 'xizmat') {
+                hiddenInput.classList.remove('hidden')
+                form.id_department.style.display = 'block'
+                form.id_parent.style.display = 'block'
+
+            } else {
+                hiddenInput.classList.add('hidden')
+                form.id_department.style.display = 'none'
+                form.id_parent.style.display = 'none'
+
+            }
+
+        }
+
+
+    </script>
+{% endblock %}

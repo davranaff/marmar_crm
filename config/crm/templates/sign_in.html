@@ -1,0 +1,24 @@
+{% load static from static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<style>
+    form input {
+        width: 100%;
+    }
+    form li {
+        display: none;
+    }
+</style>
+<img src="{% static './img/logo1.svg' %}" alt="" class="logo-sign">
+<form class="forms-sign" method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+<!--    <label>Логин</label>-->
+<!--    <input type="text" class="login" placeholder="Email">-->
+<!--    <label>Пароль</label>-->
+<!--    <input type="password" class="login" placeholder="Enter password">-->
+    <button type="submit" class="btn-sign">Войти</button>
+</form>
+<!--    {% csrf_token %}-->
+<!--    {{ form.as_p }}-->

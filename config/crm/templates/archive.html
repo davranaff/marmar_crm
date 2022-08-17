@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% block content %}
+    <section class="ofis">
+        <div class="clients-header">
+            <h1>Все проекты в архиве</h1>
+            <p>null</p>
+        </div>
+        <div class="">
+            <table class="table-clients">
+                <tr>
+                    <th>№</th>
+                    <th>Название проекта</th>
+                    <th>Клиент</th>
+                    <th>Услуга</th>
+                    <th>Статус оплаты</th>
+                    <th>Откуда</th>
+                </tr>
+                <tr>
+                    {% for order in  orders %}
+                        {% if order.is_archive == True %}
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ order.order_number }}</td>
+                            <td>{{ order.title }}</td>
+                            <td><a href="tel:+998904140184">{{ order.client }}</a></td>
+                            <td>{{ order.status }}</td>
+                            <td><p class="td-funny">Instagram</p></td>
+                            <td><a type="button" class="clients-edit" id="Editbtn"><img src="./img/clients/edit.svg" alt=""></a>
+                            </td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            </table>
+        </div>
+    </section>
+{% endblock %}

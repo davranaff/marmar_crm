@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        form ul {
+            display: none;
+        }
+    </style>
+    <section class="clients">
+        <div class="clients-header">
+            <h1>ВСЕ клиенты</h1>
+            <p>{{ klients_count }}</p>
+            <button type="button" id="myBtn" class="btn-clients">Новый клиент</button>
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <form class="forms-clients" method="post" action="{% url 'clients' %}">
+                        {% csrf_token %}
+                        {{ form }}
+                        <button class="btn-form-clients" type="submit">Добавить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <table class="table-clients">
+            <tr>
+                <th>№</th>
+                <th>Полные имена</th>
+                <th>Статус продаж</th>
+                <th>Телефон</th>
+                <th>Адрес</th>
+                <th>менеджер</th>
+                <th>Откуда</th>
+            </tr>
+            {% for klient in klients %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ klient.full_name }}</td>
+                    <td><p class="td-funny2">{{ klient.status }}</p></td>
+                    <td><a href="tel:+998904140184">{{ klient.phone }}</a></td>
+                    <td>{{ klient.address }}</td>
+                    <td>{{ klient.manager }}</td>
+                    <td><p class="td-funny">{{ klient.form }}</p></td>
+                    <td>
+                        <a type="button" class="clients-edit" id="Editbtn" href="{% url 'edit_client_pk' klient.id %}">
+                            <img src="{% static 'img/edit.svg' %}" alt="">
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+{% endblock %}
